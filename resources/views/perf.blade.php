@@ -10,7 +10,6 @@
 </head>
 <body>
 <form action="/" method="get" class="p-4">
-    @csrf
 
     <label>
         Страна

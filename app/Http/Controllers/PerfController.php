@@ -14,9 +14,17 @@ class PerfController extends Controller
     {
         $query = Movie::query();
 
-        if ($request->has('country')) {
-            $query->whereHas('countries', function(Builder $q) use ($request) {
-                $q->where('countries.id', '=', $request->get('country'));
+        //print(Movie::where('title', 'like', 'non%')->count());
+
+        if ($countryId = $request->get('country')) {
+            $query->whereHas('countries', function(Builder $q) use ($countryId) {
+                $q->where('countries.id', '=', $countryId);
+            });
+        }
+
+        if ($genreId = $request->get('genre')) {
+            $query->whereHas('genres', function(Builder $q) use ($genreId) {
+                $q->where('genres.id', '=', $genreId);
             });
         }
 
