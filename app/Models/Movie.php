@@ -9,6 +9,10 @@ class Movie extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'release_date' => 'date',
+    ];
+
     public function people()
     {
         return $this->belongsToMany(Person::class, 'movie_person')->withTimestamps();
